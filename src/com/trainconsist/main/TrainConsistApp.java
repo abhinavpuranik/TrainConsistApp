@@ -1,36 +1,39 @@
 /*
  * @author Developer
- * @version 4.0
+ * @version 6.0
  * 
- * Maintaining formation order using linked hashset
+ * Maintaining bogie capacity using hashmap
  */
 
 package com.trainconsist.main;
 
+import java.util.HashMap;
 import java.util.LinkedHashSet;
+import java.util.Map;
 import java.util.Set;
 
 public class TrainConsistApp {
 	
 	public static void main(String[] args) {
 		System.out.println("====================================================");
-		System.out.println("---- Uc4 :- Maintain Ordered Bogie Consist ----");
+		System.out.println("---- Uc6 :- Map bogie to capacity ----");
 		System.out.println("=====================================================");
 		
-		Set<String> formation = new LinkedHashSet<>();
-		formation.add("Engine");
-		formation.add("Sleeper");
-		formation.add("Cargo");
-		formation.add("Guard");
+		Map<String, Integer> capacityMap = new HashMap<>();
 		
+		capacityMap.put("First Class", 24);
+		capacityMap.put("Cargo", 24);
+		capacityMap.put("Sleeper", 72);
+		capacityMap.put("AC Chair", 56);
 		
-		formation.add("Sleeper");
+		System.out.println("Bogie capacity details: ");
 		
-		System.out.println("Final Formation : " + formation);
-		
-		System.out.println("Linked Hash set prevents insertion order and removes duplicates automatically ");
-		
-		System.out.println("UC5 formation setup complete");
+		for(Map.Entry<String, Integer> entry : capacityMap.entrySet()) {
+			System.out.println(entry.getKey() + " -> " + entry.getValue());
+			
+		}
+	
+		System.out.println("UC6 bogie capacity mapping complete");
 		
 	}
 
