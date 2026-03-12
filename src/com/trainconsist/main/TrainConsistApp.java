@@ -26,7 +26,7 @@ public class TrainConsistApp {
 	
 	public static void main(String[] args) {
 		System.out.println("====================================================");
-		System.out.println("---- uc12: Safetu compliance check for goods bogies  ----");
+		System.out.println("---- uc13: Performance comparision loop vs stream  ----");
 		System.out.println("=====================================================");
 		
 		List<GoodsBogie> goodsBogies = new ArrayList<>();
@@ -34,23 +34,46 @@ public class TrainConsistApp {
 		goodsBogies.add(new GoodsBogie("Cylindrical", "Petroleum"));
 		goodsBogies.add(new GoodsBogie("Cylindrical", "Diesel"));
 		goodsBogies.add(new GoodsBogie("Non-Cylindrical", "Diesel"));
-		for (GoodsBogie b : goodsBogies) {
-           System.out.println(b.getCargo() + b.getType());
-       }
-		  
-		  
-		boolean passesCheck = goodsBogies.stream()
-				  				.allMatch(n -> !n.getType().equals("Cylindrical") || n.getCargo().equals("Petroleum"));
-		  
-		  
-		System.out.println("Safety Compliance Status: " + passesCheck);
-		if(passesCheck) {
-			System.out.println("Train formation is SAFE");
-		}else {
-			System.out.println("Train formation is not SAFE");
-		}
+//		for (GoodsBogie b : goodsBogies) {
+//	           System.out.println(b.getCargo() + b.getType());
+//	       }
+		for (int i = 0; i < 100000; i++) {
+	            goodsBogies.add(new GoodsBogie("Cylindrical", "Petroleum"));
+	            goodsBogies.add(new GoodsBogie("Non-Cylindrical", "Coal"));
+	        }
 		
-		System.out.println("UC12 safety validation completed");
+		long startLoop = System.nanoTime();
+
+        boolean loopResult = true;
+
+        for (GoodsBogie b : goodsBogies) {
+            if (b.getType().equals("Cylindrical") && !b.getCargo().equals("Petroleum")) {
+                loopResult = false;
+                break;
+            }
+        }
+
+        long endLoop = System.nanoTime();
+
+        long loopTime = endLoop - startLoop;
+		
+		  
+        long startStream = System.nanoTime();
+
+        boolean streamResult = goodsBogies.stream()
+                .allMatch(b -> !b.getType().equals("Cylindrical") || b.getCargo().equals("Petroleum"));
+
+        long endStream = System.nanoTime();
+
+        long streamTime = endStream - startStream;
+        System.out.println("Loop Safety Result: " + loopResult);
+        System.out.println("Stream Safety Result: " + streamResult);
+
+        System.out.println("\nExecution Time (Loop): " + loopTime + " ns");
+        System.out.println("Execution Time (Stream): " + streamTime + " ns");
+
+        System.out.println("\nUC13 performance benchmarking completed.");
+		
 		  
 		  
 		  
