@@ -1,61 +1,59 @@
 /*
  * @author Developer
- * @version 17.0
- * 
- * Sorting builtin sort
+ * @version 13.0
+ *
+ * UC18: Linear Search for Bogie ID
  */
 
 package com.trainconsist.main;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Comparator;
-import java.util.HashMap;
-import java.util.LinkedHashSet;
-import java.util.Map;
-import java.util.Set;
-import java.util.stream.Collectors;
-import java.util.regex.Pattern;
-import java.util.regex.Matcher;
 
-import java.util.Scanner;
-
-import com.trainconsist.exception.CargoSafetyException;
-import com.trainconsist.exception.InvalidCapacityException;
-import com.trainconsist.model.*;
-
-import java.util.List;
 
 public class TrainConsistApp {
-	
-	public static void main(String[] args) throws InvalidCapacityException {
-		
-		System.out.println("====================================================");
-        System.out.println("  UC16: Manual sorting using builtin sort");
+
+    public static void main(String[] args) {
+
+        System.out.println("====================================================");
+        System.out.println("UC18: Linear Search for Bogie ID");
         System.out.println("====================================================");
 
-        
-        int[] capacities = {70, 80, 10, 20, 60, 30};
-        int n = capacities.length;
-        
-        System.out.println("Before Sorting:");
+        // Array of Bogie IDs (unsorted)
+        String[] bogieIds = {
+                "BG101",
+                "BG305",
+                "BG210",
+                "BG450",
+                "BG125"
+        };
 
-        
-        System.out.println(Arrays.toString(capacities));
-        
+        for (int i = 0; i < bogieIds.length; i++) {
 
-        System.out.println();
+            System.out.println(bogieIds[i]);
+        }
         
-        Arrays.sort(capacities);
-        
-        System.out.println("\nAfter Sorting:");
+        String searchKey = "BG450";
 
-        System.out.println(Arrays.toString(capacities));
-        System.out.println("\nUC17 builtin sort completed.");
-        
+        boolean found = false;
+        int position = -1;
 
-        
-        
-	}
-	
+        // Linear Search
+        for (int i = 0; i < bogieIds.length; i++) {
+
+            if (bogieIds[i].equals(searchKey)) {
+                found = true;
+                position = i;
+                break; 
+            }
+        }
+
+        if (found) {
+            System.out.println("Bogie found at position: " + position);
+        } else {
+            System.out.println("Bogie ID not found in the train consist.");
+        }
+
+        System.out.println("UC18 linear search completed.");
+
+       
+    }
 }
