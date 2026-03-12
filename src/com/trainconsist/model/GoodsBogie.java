@@ -1,5 +1,7 @@
 package com.trainconsist.model;
 
+import com.trainconsist.exception.CargoSafetyException;
+
 public class GoodsBogie {
 
 		public String type;
@@ -10,6 +12,9 @@ public class GoodsBogie {
 			this.cargo = cargo;
 			
 		}
+		public GoodsBogie(String type) {
+			this.type = type;
+		}
 
 		public String getType() {
 			return type;
@@ -17,6 +22,15 @@ public class GoodsBogie {
 
 		public String getCargo() {
 			return cargo;
+		}
+		
+		public void assignCargo(String cargo) {
+			if(!type.equals("Cylindrical") && cargo.equals("Petroleum")) 
+			{
+				throw new CargoSafetyException("Unsafe cargo assignment: Petroleum cannot be loaded in " + type + " bogie");
+			}
+			this.cargo = cargo;
+			System.out.println("Cargo assigned successfully: " + cargo);
 		}
 }
 
