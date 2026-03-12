@@ -1,5 +1,12 @@
 package com.trainconsist.model;
 
+/*
+ * @author Developer
+ * @version 16.0
+ * 
+ * passenger Bogie model
+ * 
+ **/
 import com.trainconsist.exception.InvalidCapacityException;
 
 public class PassengerBogie {

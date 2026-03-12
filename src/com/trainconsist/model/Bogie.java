@@ -1,3 +1,9 @@
+/*
+ * @author Developer
+ * @version 16.0
+ * 
+ * Bogie model
+ **/
 package com.trainconsist.model;
 
 public class Bogie {

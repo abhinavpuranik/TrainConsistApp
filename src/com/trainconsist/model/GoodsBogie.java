@@ -1,3 +1,10 @@
+/*
+ * @author Developer
+ * @version 16.0
+ * 
+ * goods Bogie model
+ **/
+
 package com.trainconsist.model;
 
 import com.trainconsist.exception.CargoSafetyException;

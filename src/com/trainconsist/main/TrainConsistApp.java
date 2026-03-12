@@ -1,8 +1,8 @@
 /*
  * @author Developer
- * @version 8.0
+ * @version 16.0
  * 
- * Filter using streams
+ * Sorting bubble sort
  */
 
 package com.trainconsist.main;
@@ -30,23 +30,39 @@ public class TrainConsistApp {
 	public static void main(String[] args) throws InvalidCapacityException {
 		
 		System.out.println("====================================================");
-        System.out.println("UC15: Safe Cargo Assignment Using try-catch-finally");
+        System.out.println("  UC16: Manual sorting using bubble sort");
         System.out.println("====================================================");
 
-        GoodsBogie bogie = new GoodsBogie("Rectangular");
-		try {
+        
+        int[] capacities = {70, 80, 10, 20, 60, 30};
+        int n = capacities.length;
 
-			 System.out.println("Attempting cargo assignment...");
-	         bogie.assignCargo("Petroleum");
+        System.out.println("Before Sorting:");
 
-        } catch (CargoSafetyException e) {
-            System.out.println("Error: " + e.getMessage());
+        for (int c : capacities) {
+            System.out.print(c + " ");
         }
-		finally {
-            System.out.println("Cargo assignment operation completed .");
 
-		}
-        System.out.println("UC 16 runtime handling successful.");
+        System.out.println();
+        
+        for(int i = 0; i < n-1; i++) {
+        	for(int j = 0; j<n-i-1; j++) {
+        		if(capacities[j] > capacities[j + 1]) {
+        			int temp = capacities[j];
+        			capacities[j] = capacities[j+1];
+        			capacities[j+1] = temp;
+        		}
+        	}
+        }
+        
+        System.out.println("\nAfter Sorting:");
+
+        for (int c : capacities) {
+            System.out.print(c + " ");
+        }
+
+        System.out.println("\nUC16 bubble sort completed.");
+        
 
         
         
